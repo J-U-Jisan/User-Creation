@@ -10,7 +10,6 @@ export default function CreateUser(props) {
         'gender': '',
         'dateOfBirth': '',
         'city': '',
-        'phone': '',
         'email': ''
     }
 
@@ -39,17 +38,16 @@ export default function CreateUser(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        if(isValidPhoneNumber(phone) === false){
+        if(isValidPhoneNumber(phone) === false || phone === ""){
             setError({ ...error, ['phone']: true })
             return false
         }
         else if(error.phone){
             setError({ ...error, ['phone']: false })
         }
-
-        if(phone !== user.phone)
-            setUser({...user,["phone"]: phone})
         
+        
+        console.log('Phone: ' + phone + ' ' + 'User: ' + user.phone)
         if(user.firstName.length<2 || user.firstName.length>50){
             setError({ ...error, ['firstName']: true })
             return false
@@ -80,7 +78,16 @@ export default function CreateUser(props) {
     const addUser = () => {
         const users = loadUsers()
         // const users= []
-        users.push(user)
+        const temp = {
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'gender': user.gender,
+            'dateOfBirth': user.dateOfBirth,
+            'city': user.city,
+            'phone': phone,
+            'email': user.email
+        }
+        users.push(temp)
         localStorage.setItem("users",JSON.stringify(users))
         
         const user1 = JSON.parse(localStorage.getItem("users"))

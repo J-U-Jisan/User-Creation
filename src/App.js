@@ -16,12 +16,23 @@ function App() {
   }
 
  
-  let data = JSON.parse(localStorage.getItem("users"))
-  if(!data)
-    data = []
-  
+  const users = JSON.parse(localStorage.getItem("users"))
 
-  console.log('Menu:', menu)
+  let data = []
+
+  if(users !== null){
+    for(let i=0; i<users.length;i++){
+      data.push({
+        'FirstName' : users[i].firstName,
+        'LastName' : users[i].lastName,
+        'Gender' : users[i].gender,
+        'DateOfBirth' : users[i].dateOfBirth,
+        'Email' : users[i].email,
+        'Phone' : users[i].phone,
+      })
+    }
+  }
+
   return (
     <div className="col-md-8 m-auto text-center App overflow-auto" style={height}>
       <div className='py-3'>
