@@ -42,9 +42,6 @@ export default function Users(props) {
 
         data.sort((a, b) => {
             const result = a[sort].localeCompare(b[sort])
-            // if(result=== -1 || !result)
-            //     return true
-            // else return false
             return result
         })
         console.log(data)

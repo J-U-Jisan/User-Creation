@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import CreateUser from "./components/CreateUser"
 import Users from './components/Users'
+// import axios from 'axios'
 
 const height = {
   height: window.innerHeight
@@ -10,16 +11,23 @@ const height = {
 function App() {
 
   const [menu, setMenu] = useState('Create User')
+  // const [users, setUsers] = useState('')
   
-  const handleMenu = (value) => {
+  const handleMenu = async (value) => {
+    // await loadUsers()
     setMenu(value)
   }
-
  
   const users = JSON.parse(localStorage.getItem("users"))
+  
+  // const loadUsers = async () => {
+  //   const res = await axios.get(`https://localhost:7191/users`)
+  //   const data = await res.data
+  //   await setUsers(data)
+  // }
 
+  
   let data = []
-
   if(users !== null){
     for(let i=0; i<users.length;i++){
       data.push({
@@ -32,6 +40,7 @@ function App() {
       })
     }
   }
+
 
   return (
     <div className="col-md-8 m-auto text-center App overflow-auto" style={height}>

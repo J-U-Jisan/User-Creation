@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import 'react-phone-number-input/style.css'
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
+// import axios from 'axios'
 
 export default function CreateUser(props) {
 
@@ -72,12 +73,12 @@ export default function CreateUser(props) {
             setError({ ...error, ['gender']: false })
         } 
         addUser() 
+        // addUserWithApi()
         props.handleMenu("Users")  
     }
 
     const addUser = () => {
         const users = loadUsers()
-        // const users= []
         const temp = {
             'firstName': user.firstName,
             'lastName': user.lastName,
@@ -100,6 +101,20 @@ export default function CreateUser(props) {
             return data
         else return []
     }
+
+    // const addUserWithApi = async () => {
+    //     const temp = {
+    //         'firstName': user.firstName,
+    //         'lastName': user.lastName,
+    //         'gender': user.gender,
+    //         'dateOfBirth': user.dateOfBirth,
+    //         'city': user.city,
+    //         'phone': phone,
+    //         'email': user.email
+    //     }
+    //     const res = await axios.post(`https://localhost:7191/add-user`, temp)
+    //     console.log(res)
+    // }
 
     return (
         <div className='my-3 px-2'>
